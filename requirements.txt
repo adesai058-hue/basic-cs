@@ -1,0 +1,2 @@
+# Empty requirements file for basic-cs repo (uses standard library)
+pytest>=7.0.0
