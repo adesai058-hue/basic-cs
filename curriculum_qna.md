@@ -1,24 +1,34 @@
-# Basic CS Curriculum - Practice Questions & Answers
+# Basic CS Curriculum - 80 Practice Questions & Answers
 
-This document contains a comprehensive set of practice questions and detailed answers designed to test understanding of the four basic Computer Science sessions in the lesson plan.
+This document contains a comprehensive bank of 80 practice questions and answers categorized by the four sessions of the CS curriculum.
 
 ---
 
 ## 🐶 Session 1: Karel (Commands & Functions)
 
-### Q1. What are the four basic commands that Karel understands out of the box?
-**Answer:**
-Karel understands the following four basic commands:
-1. `move()`: Moves Karel forward one space in the direction it is facing.
-2. `turnLeft()`: Rotates Karel 90 degrees to the left.
-3. `putBall()`: Places one ball on Karel's current street and avenue.
-4. `takeBall()`: Picks up one ball from Karel's current street and avenue.
+### Q1. What does the `move()` command do?
+**Answer:** It moves Karel forward one space in the direction it is currently facing.
 
----
+### Q2. What does the `turnLeft()` command do?
+**Answer:** It rotates Karel 90 degrees counter-clockwise (to the left) in its current position.
 
-### Q2. How would you write a helper function `turnRight()` in Karel using only basic commands?
-**Answer:**
-Since Karel can only turn left, turning right is equivalent to turning left three times:
+### Q3. What does the `putBall()` command do?
+**Answer:** It places one tennis ball on Karel's current street and avenue intersection.
+
+### Q4. What does the `takeBall()` command do?
+**Answer:** It picks up one tennis ball from Karel's current street and avenue intersection.
+
+### Q5. How does Karel turn around (180 degrees) using basic commands?
+**Answer:** Since Karel has no built-in `turnAround()` command, you call `turnLeft()` twice:
+```javascript
+function turnAround() {
+    turnLeft();
+    turnLeft();
+}
+```
+
+### Q6. How does Karel turn right (270 degrees) using basic commands?
+**Answer:** You turn left three times:
 ```javascript
 function turnRight() {
     turnLeft();
@@ -27,154 +37,238 @@ function turnRight() {
 }
 ```
 
----
+### Q7. What is a syntax error in Karel?
+**Answer:** A syntax error is a grammatical mistake in the code (e.g., misspelling a command like `mov();`, forgetting parentheses, or omitting curly braces) that prevents the program from running.
 
-### Q3. Explain the concept of "Top-Down Design" and how it applies to writing Karel programs.
+### Q8. How do you define a new function in Karel?
+**Answer:** You use the `function` keyword followed by the function name, parentheses, and curly braces:
+```javascript
+function nameYourFunction() {
+    // commands go here
+}
+```
+
+### Q9. What is the entry point of any Karel program?
+**Answer:** The `start()` function. When the program runs, the computer looks for and executes `start()` first.
+
+### Q10. What is "Top-Down Design"?
+**Answer:** It is a programming methodology where you break a big problem into smaller, simpler, and named sub-problems (helper functions).
+
+### Q11. What is "Stepwise Refinement"?
+**Answer:** The process of gradually developing a complex program by writing and testing helper functions one step at a time, moving from the most general tasks to specific details.
+
+### Q12. Why is code indentation important in Karel?
+**Answer:** It makes the code readable and helps visualize which commands belong inside which functions or loops. In JS/Karel, code inside curly braces is indented by 4 spaces.
+
+### Q13. Which sensory condition checks if Karel can move forward?
+**Answer:** `frontIsClear()`, which returns `true` if there is no wall directly in front of Karel, and `false` if there is.
+
+### Q14. What are some of Karel's sensory conditions?
 **Answer:**
-Top-down design is a problem-solving strategy where you start with a big, complex problem and break it down into smaller, more manageable sub-problems (helper functions). 
-In Karel, you implement this by:
-1. Writing a main `start()` function that describes the overall solution at a high level.
-2. Defining clear helper functions (like `solveHurdle()`, `buildTower()`, etc.) that execute the smaller parts of the task.
-3. Breaking those helper functions down further if they are still too complex.
+- `frontIsClear()` / `frontIsBlocked()`
+- `leftIsClear()` / `leftIsBlocked()`
+- `rightIsClear()` / `rightIsBlocked()`
+- `ballsPresent()` / `noBallsPresent()`
+- `facingNorth()`, `facingSouth()`, `facingEast()`, `facingWest()`
 
----
+### Q15. What happens if Karel tries to move into a wall?
+**Answer:** The program crashes or throws a "Karel crashed into a wall!" runtime error.
 
-### Q4. Why is it important to name functions with clear action verbs (e.g., `cleanRow()` vs `row()`)?
+### Q16. What happens if Karel tries to take a ball when no balls are present?
+**Answer:** The program crashes with an error stating there are no balls to retrieve.
+
+### Q17. Why do we write helper functions instead of putting all commands in `start()`?
+**Answer:** It keeps the code clean, avoids repetition (makes code reusable), and makes the program easier to read, write, and debug.
+
+### Q18. Give an example of a good descriptive function name for picking up a row of balls.
+**Answer:** `cleanRow()` or `pickUpRow()` are good because they start with clear action verbs. A bad name would be `row()` or `balls()`.
+
+### Q19. What is the difference between a function definition and a function call?
 **Answer:**
-Functions perform actions. Naming them with active verbs makes the code self-documenting, readable, and easier to debug. For example:
-- `cleanRow()` tells the reader exactly *what* action the function performs.
-- `row()` is ambiguous—it could represent a variable holding row data, a row count, or something else entirely.
+- **Definition:** Writing the code that details *what* the function does: `function walk() { move(); }`
+- **Call:** Instructing the computer to *run* that function: `walk();`
 
----
-
-### Q5. What is the role of the `start()` function in a Karel program?
-**Answer:**
-The `start()` function serves as the entry point of the Karel program. When the program runs, execution starts inside the `start()` function, which calls other helper functions to carry out the program's main objective.
+### Q20. True or False: Karel can move diagonally.
+**Answer:** False. Karel can only move in the direction it is facing (North, South, East, or West).
 
 ---
 
 ## 🔄 Session 2: Variables & Loops
 
-### Q6. What is the difference between `let` and `const` in JavaScript?
-**Answer:**
-- `let` is used to declare variables whose values **can** be reassigned later in the program.
-- `const` is used to declare constants whose values **cannot** be reassigned once set. Attempting to do so will result in a runtime error.
-*Example:*
-```javascript
-let score = 10;
-score = 15; // Allowed
+### Q21. What is a variable in programming?
+**Answer:** A named container used to store data values that can be referenced and manipulated in a program.
 
-const pi = 3.14;
-pi = 3.1415; // Error!
+### Q22. How do you declare a variable using `let`?
+**Answer:** Use the `let` keyword, followed by the variable name:
+```javascript
+let count;
 ```
 
----
-
-### Q7. How do you find the length of a string in JavaScript, and what property do you use?
-**Answer:**
-You use the `.length` property of a string.
-*Example:*
+### Q23. How do you declare a variable using `const`?
+**Answer:** Use the `const` keyword, followed by the name and an immediate initial value:
 ```javascript
 const name = "Karel";
-console.log(name.length); // Outputs: 5
 ```
 
----
-
-### Q8. Write a `for` loop that prints the numbers from 1 to 5 to the console.
+### Q24. Explain the difference between variable declaration and variable initialization.
 **Answer:**
+- **Declaration:** Creating the variable name: `let score;`
+- **Initialization:** Assigning the first value to the variable: `score = 10;`
+
+### Q25. What is a primitive data type? Name three.
+**Answer:** Primitive data types are the most basic types of data in JavaScript. Examples:
+1. `Number` (e.g., `5`, `3.14`)
+2. `String` (e.g., `"Hello"`)
+3. `Boolean` (e.g., `true`, `false`)
+
+### Q26. What value does a variable have if it is declared but not initialized?
+**Answer:** Its value is `undefined`.
+
+### Q27. How do you print something to the console in JavaScript?
+**Answer:** Using the `console.log()` command:
 ```javascript
-for (let i = 1; i <= 5; i++) {
-    console.log(i);
-}
+console.log("Hello, World!");
 ```
 
----
+### Q28. What is a string?
+**Answer:** A sequence of characters wrapped in single quotes (`'...'`), double quotes (`"..."`), or backticks (`` `...` ``).
 
-### Q9. When would you choose to use a `while` loop instead of a `for` loop?
-**Answer:**
-- Use a **`for` loop** when you know the exact number of times the loop needs to run (e.g., repeating a task exactly 10 times).
-- Use a **`while` loop** when you want the loop to continue running until a specific condition changes, and you don't know in advance how many iterations that will take (e.g., moving Karel forward `while (frontIsClear())`).
-
----
-
-### Q10. What does the `break` statement do inside a loop? Give a code example.
-**Answer:**
-The `break` statement immediately terminates the loop it is inside, and program control resumes at the next statement outside the loop.
-*Example:*
+### Q29. How do you concatenate two strings?
+**Answer:** You use the `+` operator:
 ```javascript
-for (let i = 1; i <= 10; i++) {
-    if (i === 5) {
-        break; // Stops the loop when i reaches 5
-    }
-    console.log(i); // Prints 1, 2, 3, 4
-}
+let greeting = "Hello " + "World"; // "Hello World"
+```
+
+### Q30. What is the property to find the length of a string?
+**Answer:** The `.length` property:
+```javascript
+let word = "Java";
+console.log(word.length); // 4
+```
+
+### Q31. How do you access the first character of a string?
+**Answer:** Using bracket notation with index `0`:
+```javascript
+let name = "Karel";
+let firstChar = name[0]; // "K"
+```
+
+### Q32. What is a `for` loop?
+**Answer:** A loop control structure used to repeat a block of code a specific number of times.
+
+### Q33. What are the three parts of a `for` loop control statement?
+**Answer:**
+1. **Initialization:** Sets the starting point (e.g., `let i = 0;`).
+2. **Condition:** Checked before each loop iteration (e.g., `i < 10;`).
+3. **Increment/Decrement:** Changes the counter variable after each iteration (e.g., `i++`).
+*Example:* `for (let i = 0; i < 10; i++)`
+
+### Q34. What is a `while` loop?
+**Answer:** A loop control structure that continues executing a block of code as long as its condition remains `true`.
+
+### Q35. What is a loop variable?
+**Answer:** A variable (commonly named `i`, `j`, or `k`) used to count or track the iterations of a loop.
+
+### Q36. What is an infinite loop and how does it happen?
+**Answer:** A loop that never stops running because the exit condition is never met (e.g., `while(true) {}` or a loop condition that always evaluates to `true`).
+
+### Q37. What does the `break` statement do?
+**Answer:** It immediately exits the loop, jumping to the code directly after the loop block.
+
+### Q38. What is the increment operator (`++`)?
+**Answer:** An operator that adds `1` to the value of a number variable: `x++` is equivalent to `x = x + 1`.
+
+### Q39. What is the decrement operator (`--`)?
+**Answer:** An operator that subtracts `1` from the value of a number variable: `x--` is equivalent to `x = x - 1`.
+
+### Q40. How do you change a variable `y` by adding 5 to it using shorthand notation?
+**Answer:**
+```javascript
+y += 5; // equivalent to y = y + 5;
 ```
 
 ---
 
 ## 🔀 Session 3: Control Structures
 
-### Q11. Explain what comparison operators are and list four examples.
+### Q41. What is a boolean?
+**Answer:** A data type that can only have one of two values: `true` or `false`.
+
+### Q42. Name the comparison operators for equality and inequality.
 **Answer:**
-Comparison operators are used to compare two values and return a boolean value (`true` or `false`).
-Examples:
-1. `===` (Equal to)
-2. `!==` (Not equal to)
-3. `>` (Greater than)
-4. `<=` (Less than or equal to)
+- Equality: `===` (Strict equality)
+- Inequality: `!==` (Strict inequality)
 
----
-
-### Q12. What are the three main logical operators in JavaScript and what do they do?
+### Q43. What is the difference between `==` and `===`?
 **Answer:**
-1. `&&` (Logical AND): Returns `true` if **both** operands are true.
-2. `||` (Logical OR): Returns `true` if **at least one** operand is true.
-3. `!` (Logical NOT): Reverses the boolean value of the operand (turns `true` to `false` and vice versa).
+- `==` compares values for equality after performing type conversion (coercion).
+- `===` compares both the value and the type strictly (no coercion).
 
----
+### Q44. What does the `>` operator check?
+**Answer:** It checks if the value on the left is strictly greater than the value on the right.
 
-### Q13. Write a function named `isEligible` that takes an parameter `age` and returns `true` if the age is 18 or older, and `false` otherwise.
-**Answer:**
+### Q45. What does the `<=` operator check?
+**Answer:** It checks if the value on the left is less than or equal to the value on the right.
+
+### Q46. What is the logical AND (`&&`) operator?
+**Answer:** It combines two conditions and returns `true` only if both conditions are `true`.
+
+### Q47. What is the logical OR (`||`) operator?
+**Answer:** It combines two conditions and returns `true` if at least one of the conditions is `true`.
+
+### Q48. What is the logical NOT (`!`) operator?
+**Answer:** It negates a boolean value, changing `true` to `false` and `false` to `true`.
+
+### Q49. How does an `if` statement work?
+**Answer:** It runs a block of code if, and only if, its specified condition evaluates to `true`.
+
+### Q50. What is the purpose of an `else` statement?
+**Answer:** It provides an alternative block of code to run when the `if` condition evaluates to `false`.
+
+### Q51. When do you use `else if` instead of multiple `if` statements?
+**Answer:** When you have multiple mutually exclusive conditions (where only one block should run). In a chain of `if-else if-else`, once one condition is true, the rest are ignored.
+
+### Q52. How do you define a function with parameters in JavaScript?
+**Answer:** Place the parameter names inside the parentheses in the function declaration:
 ```javascript
-function isEligible(age) {
-    if (age >= 18) {
-        return true;
-    } else {
-        return false;
-    }
+function greetUser(name) {
+    console.log("Hello, " + name);
 }
-// Shorter equivalent version:
-// function isEligible(age) { return age >= 18; }
 ```
 
----
-
-### Q14. What is block scope, and can a variable declared with `let` inside an `if` block be accessed outside of it?
+### Q53. What is the difference between a parameter and an argument?
 **Answer:**
-Block scope means variables declared inside curly braces `{}` are only accessible within that block.
-No, a variable declared with `let` inside an `if` block cannot be accessed outside the block.
-*Example:*
+- **Parameter:** The variable named in the function definition (e.g., `name`).
+- **Argument:** The actual value passed to the function when calling it (e.g., `"Arham"` in `greetUser("Arham");`).
+
+### Q54. What does the `return` statement do in a function?
+**Answer:** It exits the function and sends a value back to the place where the function was called.
+
+### Q55. What happens to the execution of a function after a `return` statement is run?
+**Answer:** The function stops executing immediately. Any code written after the `return` statement in that block is ignored (unreachable code).
+
+### Q56. What is global scope?
+**Answer:** Variables declared outside any function or block are in the global scope and can be accessed from anywhere in the program.
+
+### Q57. What is local/function scope?
+**Answer:** Variables declared inside a function are local to that function and cannot be accessed from outside the function.
+
+### Q58. What is block scope?
+**Answer:** Variables declared with `let` or `const` inside curly braces `{}` (like in loops or conditionals) are scoped to that block and cannot be accessed outside of it.
+
+### Q59. Can a function have multiple parameters? Show an example.
+**Answer:** Yes.
 ```javascript
-if (true) {
-    let message = "Hello";
+function add(num1, num2) {
+    return num1 + num2;
 }
-console.log(message); // ReferenceError: message is not defined
 ```
 
----
-
-### Q15. Create a conditional structure using `if`, `else if`, and `else` that logs "Go" if a variable `light` is "green", "Slow down" if it is "yellow", and "Stop" for any other color.
+### Q60. Write a function `multiply` that takes two numbers and returns their product.
 **Answer:**
 ```javascript
-let light = "yellow";
-
-if (light === "green") {
-    console.log("Go");
-} else if (light === "yellow") {
-    console.log("Slow down");
-} else {
-    console.log("Stop");
+function multiply(a, b) {
+    return a * b;
 }
 ```
 
@@ -182,54 +276,105 @@ if (light === "green") {
 
 ## 📊 Session 4: Arrays & Lists
 
-### Q16. How do you access the first and last element of an array named `colors`?
-**Answer:**
-Arrays are zero-indexed, meaning the first element is at index `0`. The last element is at index `length - 1`.
-- **First element:** `colors[0]`
-- **Last element:** `colors[colors.length - 1]`
+### Q61. What is an array?
+**Answer:** An ordered list of values grouped together inside bracket notation `[...]`.
 
----
-
-### Q17. How do you modify an element at index 2 of an array named `fruits` to be "Mango"?
+### Q62. How do you create an empty array in JavaScript?
 **Answer:**
 ```javascript
-fruits[2] = "Mango";
+let arr = [];
 ```
 
----
+### Q63. How are elements in an array indexed?
+**Answer:** Arrays are zero-indexed. The first element is at index `0`, the second is at index `1`, and so on.
 
-### Q18. What is the difference between `push()` and `pop()` array methods?
+### Q64. How do you access the element at index 3 of an array `arr`?
 **Answer:**
-- `push(item)`: Adds one or more elements to the **end** of the array.
-- `pop()`: Removes and returns the **last** element of the array.
-*Example:*
 ```javascript
-let numbers = [1, 2];
-numbers.push(3); // numbers is now [1, 2, 3]
-let last = numbers.pop(); // last is 3, numbers is back to [1, 2]
+let element = arr[3];
 ```
 
----
-
-### Q19. What does `indexOf()` return if the element is in the array, and what does it return if it is not?
+### Q65. How do you change the first element of an array to "Apple"?
 **Answer:**
-- If the element is found, it returns the **first index** at which the element exists.
-- If the element is **not** found, it returns `-1`.
-*Example:*
 ```javascript
-let items = ["apple", "banana"];
-console.log(items.indexOf("banana")); // Prints: 1
-console.log(items.indexOf("orange")); // Prints: -1
+arr[0] = "Apple";
 ```
 
----
+### Q66. How do you get the number of elements in an array?
+**Answer:** By using the `.length` property of the array:
+```javascript
+let size = arr.length;
+```
 
-### Q20. Write a loop that iterates through an array named `grades` and logs each grade to the console.
+### Q67. What does the `push()` method do?
+**Answer:** It appends a new element to the end of the array.
+```javascript
+let list = [1, 2];
+list.push(3); // [1, 2, 3]
+```
+
+### Q68. What does the `pop()` method do?
+**Answer:** It removes and returns the last element of the array.
+```javascript
+let list = [1, 2, 3];
+let last = list.pop(); // last is 3; list is [1, 2]
+```
+
+### Q69. How does `indexOf()` work?
+**Answer:** It searches the array for a specific element and returns the first index at which it is found.
+
+### Q70. What does `indexOf()` return if the item is not found?
+**Answer:** It returns `-1`.
+
+### Q71. What does the `splice()` method do?
+**Answer:** It changes the contents of an array by removing, replacing, or adding elements at a specific index:
+`arr.splice(startIndex, deleteCount, item1, item2, ...)`
+
+### Q72. How do you remove the first element of an array?
+**Answer:** Using the `shift()` method:
+```javascript
+let list = [1, 2, 3];
+list.shift(); // removes 1, list is now [2, 3]
+```
+
+### Q73. How do you write a `for` loop to iterate through an array named `scores`?
 **Answer:**
 ```javascript
-let grades = [85, 92, 78, 90];
-
-for (let i = 0; i < grades.length; i++) {
-    console.log(grades[i]);
+for (let i = 0; i < scores.length; i++) {
+    console.log(scores[i]);
 }
 ```
+
+### Q74. How do you access the last element of an array dynamically?
+**Answer:**
+```javascript
+let last = arr[arr.length - 1];
+```
+
+### Q75. Can an array store different data types at the same time in JavaScript?
+**Answer:** Yes. A JavaScript array can contain numbers, strings, booleans, objects, and other arrays all at once.
+
+### Q76. What is the index of the last element in an array of length `N`?
+**Answer:** The index is `N - 1`.
+
+### Q77. Write a loop to calculate the sum of all numbers in an array named `nums`.
+**Answer:**
+```javascript
+let sum = 0;
+for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+}
+```
+
+### Q78. What happens if you try to access an index that doesn't exist in an array (e.g., `arr[100]` on a 3-element array)?
+**Answer:** It returns `undefined` instead of throwing an error.
+
+### Q79. How do you add an element to the beginning of an array?
+**Answer:** Using the `unshift()` method:
+```javascript
+let list = [2, 3];
+list.unshift(1); // list is now [1, 2, 3]
+```
+
+### Q80. What is the difference between an array and a primitive variable?
+**Answer:** A primitive variable stores a single value (e.g., `x = 5`), whereas an array is a collection/data structure that can store multiple ordered values (e.g., `list = [5, 10, 15]`).
