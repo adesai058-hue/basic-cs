@@ -1,69 +1,74 @@
-# Basic CS Curriculum - 80 Practice Questions & Answers
+# Basic CS Curriculum - 80 Practice Questions & Answers (Java Edition)
 
-This document contains a comprehensive bank of 80 practice questions and answers categorized by the four sessions of the CS curriculum.
+This document contains a comprehensive bank of 80 practice questions and answers designed around the curriculum, fully adapted for **Java**.
 
 ---
 
 ## 🐶 Session 1: Karel (Commands & Functions)
 
-### Q1. What does the `move()` command do?
+### Q1. What does the `move();` command do in Java Karel?
 **Answer:** It moves Karel forward one space in the direction it is currently facing.
 
-### Q2. What does the `turnLeft()` command do?
+### Q2. What does the `turnLeft();` command do?
 **Answer:** It rotates Karel 90 degrees counter-clockwise (to the left) in its current position.
 
-### Q3. What does the `putBall()` command do?
-**Answer:** It places one tennis ball on Karel's current street and avenue intersection.
+### Q3. What does the `putBall();` command do?
+**Answer:** It places one tennis ball on Karel's current intersection (street and avenue).
 
-### Q4. What does the `takeBall()` command do?
-**Answer:** It picks up one tennis ball from Karel's current street and avenue intersection.
+### Q4. What does the `takeBall();` command do?
+**Answer:** It picks up one tennis ball from Karel's current intersection.
 
-### Q5. How does Karel turn around (180 degrees) using basic commands?
-**Answer:** Since Karel has no built-in `turnAround()` command, you call `turnLeft()` twice:
-```javascript
-function turnAround() {
+### Q5. How do you write a method `turnAround()` in Java Karel?
+**Answer:** Since Karel has no built-in `turnAround()` method, you define a method that calls `turnLeft();` twice:
+```java
+public void turnAround() {
     turnLeft();
     turnLeft();
 }
 ```
 
-### Q6. How does Karel turn right (270 degrees) using basic commands?
+### Q6. How do you write a method `turnRight()` in Java Karel?
 **Answer:** You turn left three times:
-```javascript
-function turnRight() {
+```java
+public void turnRight() {
     turnLeft();
     turnLeft();
     turnLeft();
 }
 ```
 
-### Q7. What is a syntax error in Karel?
-**Answer:** A syntax error is a grammatical mistake in the code (e.g., misspelling a command like `mov();`, forgetting parentheses, or omitting curly braces) that prevents the program from running.
+### Q7. What is a syntax error in Java?
+**Answer:** A syntax error is a violation of the language's grammatical rules (e.g., forgetting a semicolon `;`, mismatching curly braces `{}`, or spelling a command wrong) that prevents the code from compiling.
 
-### Q8. How do you define a new function in Karel?
-**Answer:** You use the `function` keyword followed by the function name, parentheses, and curly braces:
-```javascript
-function nameYourFunction() {
-    // commands go here
+### Q8. How do you define a helper method in a Java Karel program?
+**Answer:** You define it inside the class, using the `public void` keywords followed by the name, parentheses, and curly braces:
+```java
+public void pickRow() {
+    // Method body
 }
 ```
 
-### Q9. What is the entry point of any Karel program?
-**Answer:** The `start()` function. When the program runs, the computer looks for and executes `start()` first.
+### Q9. What is the entry point method for a Java Karel program?
+**Answer:** The `run()` method. When the program starts, execution begins inside:
+```java
+public void run() {
+    // code starts here
+}
+```
 
 ### Q10. What is "Top-Down Design"?
-**Answer:** It is a programming methodology where you break a big problem into smaller, simpler, and named sub-problems (helper functions).
+**Answer:** A programming strategy where you break a large, complex problem into smaller, named sub-problems (implemented as helper methods in Java).
 
 ### Q11. What is "Stepwise Refinement"?
-**Answer:** The process of gradually developing a complex program by writing and testing helper functions one step at a time, moving from the most general tasks to specific details.
+**Answer:** The process of gradually developing a program by writing and testing helper methods one at a time, moving from the high-level logic to specific details.
 
-### Q12. Why is code indentation important in Karel?
-**Answer:** It makes the code readable and helps visualize which commands belong inside which functions or loops. In JS/Karel, code inside curly braces is indented by 4 spaces.
+### Q12. Why is code indentation and formatting critical in Java?
+**Answer:** While the Java compiler doesn't require indentation, it is essential for human readability to show the structure of blocks (classes, methods, loops) and find errors easily.
 
-### Q13. Which sensory condition checks if Karel can move forward?
-**Answer:** `frontIsClear()`, which returns `true` if there is no wall directly in front of Karel, and `false` if there is.
+### Q13. Which condition checks if Karel has a clear path forward?
+**Answer:** The `frontIsClear()` method, which returns `true` if there is no wall directly in front of Karel, and `false` if there is.
 
-### Q14. What are some of Karel's sensory conditions?
+### Q14. What are some of Karel's sensory conditions in Java?
 **Answer:**
 - `frontIsClear()` / `frontIsBlocked()`
 - `leftIsClear()` / `leftIsBlocked()`
@@ -71,204 +76,213 @@ function nameYourFunction() {
 - `ballsPresent()` / `noBallsPresent()`
 - `facingNorth()`, `facingSouth()`, `facingEast()`, `facingWest()`
 
-### Q15. What happens if Karel tries to move into a wall?
-**Answer:** The program crashes or throws a "Karel crashed into a wall!" runtime error.
+### Q15. What happens if Karel moves into a wall in Java?
+**Answer:** The program crashes at runtime, throwing an error indicating that Karel crashed into a wall.
 
-### Q16. What happens if Karel tries to take a ball when no balls are present?
-**Answer:** The program crashes with an error stating there are no balls to retrieve.
+### Q16. What happens if Karel tries to pick up a ball when none are present?
+**Answer:** The program crashes at runtime because there is no ball to take.
 
-### Q17. Why do we write helper functions instead of putting all commands in `start()`?
-**Answer:** It keeps the code clean, avoids repetition (makes code reusable), and makes the program easier to read, write, and debug.
+### Q17. Why do we write helper methods instead of putting all code in `run()`?
+**Answer:** It makes the code reusable, avoids duplication, and keeps the program organized and easier to read and debug.
 
-### Q18. Give an example of a good descriptive function name for picking up a row of balls.
-**Answer:** `cleanRow()` or `pickUpRow()` are good because they start with clear action verbs. A bad name would be `row()` or `balls()`.
+### Q18. Give an example of a good descriptive method name for picking up a row of balls in Java.
+**Answer:** `cleanRow()` or `pickUpRow()` (camelCase, starting with an active verb).
 
-### Q19. What is the difference between a function definition and a function call?
+### Q19. What is the difference between a method declaration and a method call in Java?
 **Answer:**
-- **Definition:** Writing the code that details *what* the function does: `function walk() { move(); }`
-- **Call:** Instructing the computer to *run* that function: `walk();`
+- **Declaration:** Defining the method: `public void walk() { move(); }`
+- **Call:** Instructing the program to execute it: `walk();`
 
-### Q20. True or False: Karel can move diagonally.
-**Answer:** False. Karel can only move in the direction it is facing (North, South, East, or West).
+### Q20. True or False: A Java Karel class must extend `Karel` or `SuperKarel`.
+**Answer:** True. This inheritance allows your class to use Karel's built-in commands and conditions.
 
 ---
 
 ## 🔄 Session 2: Variables & Loops
 
-### Q21. What is a variable in programming?
-**Answer:** A named container used to store data values that can be referenced and manipulated in a program.
+### Q21. What is a variable in Java?
+**Answer:** A named memory location used to store a value of a specific data type.
 
-### Q22. How do you declare a variable using `let`?
-**Answer:** Use the `let` keyword, followed by the variable name:
-```javascript
-let count;
+### Q22. How do you declare a variable in Java?
+**Answer:** In Java, you must specify the data type before the variable name:
+```java
+int count;
 ```
 
-### Q23. How do you declare a variable using `const`?
-**Answer:** Use the `const` keyword, followed by the name and an immediate initial value:
-```javascript
-const name = "Karel";
+### Q23. How do you declare a constant (read-only) variable in Java?
+**Answer:** You use the `final` keyword:
+```java
+final double PI = 3.14159;
 ```
 
-### Q24. Explain the difference between variable declaration and variable initialization.
+### Q24. Explain the difference between variable declaration and variable initialization in Java.
 **Answer:**
-- **Declaration:** Creating the variable name: `let score;`
-- **Initialization:** Assigning the first value to the variable: `score = 10;`
+- **Declaration:** Declares the type and name: `int score;`
+- **Initialization:** Assigns the first value: `score = 0;`
 
-### Q25. What is a primitive data type? Name three.
-**Answer:** Primitive data types are the most basic types of data in JavaScript. Examples:
-1. `Number` (e.g., `5`, `3.14`)
-2. `String` (e.g., `"Hello"`)
-3. `Boolean` (e.g., `true`, `false`)
+### Q25. What is a primitive data type? Name three in Java.
+**Answer:** Basic data types built into Java. Examples:
+1. `int` (for integers)
+2. `double` (for decimal numbers)
+3. `boolean` (for `true`/`false`)
 
-### Q26. What value does a variable have if it is declared but not initialized?
-**Answer:** Its value is `undefined`.
+### Q26. Can you assign a decimal value (like `5.5`) to an `int` variable in Java?
+**Answer:** No. Doing so will cause a compilation error (type mismatch) unless you explicitly cast it: `int num = (int) 5.5;` (which truncates it to `5`).
 
-### Q27. How do you print something to the console in JavaScript?
-**Answer:** Using the `console.log()` command:
-```javascript
-console.log("Hello, World!");
+### Q27. How do you print something to the console in Java?
+**Answer:** Using `System.out.println()`:
+```java
+System.out.println("Hello, World!");
 ```
 
-### Q28. What is a string?
-**Answer:** A sequence of characters wrapped in single quotes (`'...'`), double quotes (`"..."`), or backticks (`` `...` ``).
+### Q28. What is a `String` in Java?
+**Answer:** A `String` is an object representing a sequence of characters, wrapped in double quotes: `"Hello"`.
 
-### Q29. How do you concatenate two strings?
-**Answer:** You use the `+` operator:
-```javascript
-let greeting = "Hello " + "World"; // "Hello World"
+### Q29. How do you concatenate two strings in Java?
+**Answer:** Using the `+` operator:
+```java
+String fullName = "Karel" + " the Robot";
 ```
 
-### Q30. What is the property to find the length of a string?
-**Answer:** The `.length` property:
-```javascript
-let word = "Java";
-console.log(word.length); // 4
+### Q30. How do you find the length of a `String` in Java?
+**Answer:** Using the `.length()` method:
+```java
+String word = "Java";
+System.out.println(word.length()); // Prints: 4
 ```
 
-### Q31. How do you access the first character of a string?
-**Answer:** Using bracket notation with index `0`:
-```javascript
-let name = "Karel";
-let firstChar = name[0]; // "K"
+### Q31. How do you access a specific character at index `i` in a Java String?
+**Answer:** Using the `.charAt(i)` method:
+```java
+String name = "Karel";
+char firstLetter = name.charAt(0); // 'K'
 ```
 
-### Q32. What is a `for` loop?
-**Answer:** A loop control structure used to repeat a block of code a specific number of times.
+### Q32. What is a `for` loop in Java?
+**Answer:** A control structure used to repeat a block of code a predetermined number of times.
 
-### Q33. What are the three parts of a `for` loop control statement?
+### Q33. Write a Java `for` loop that prints numbers from 1 to 5.
 **Answer:**
-1. **Initialization:** Sets the starting point (e.g., `let i = 0;`).
-2. **Condition:** Checked before each loop iteration (e.g., `i < 10;`).
-3. **Increment/Decrement:** Changes the counter variable after each iteration (e.g., `i++`).
-*Example:* `for (let i = 0; i < 10; i++)`
+```java
+for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}
+```
 
-### Q34. What is a `while` loop?
-**Answer:** A loop control structure that continues executing a block of code as long as its condition remains `true`.
+### Q34. What is a `while` loop in Java?
+**Answer:** A loop that repeats a block of code as long as a specified boolean condition remains `true`.
 
-### Q35. What is a loop variable?
-**Answer:** A variable (commonly named `i`, `j`, or `k`) used to count or track the iterations of a loop.
+### Q35. What is a loop counter variable?
+**Answer:** A variable declared in a loop control statement (usually `i`, `j`, or `k`) that tracks the current iteration.
 
-### Q36. What is an infinite loop and how does it happen?
-**Answer:** A loop that never stops running because the exit condition is never met (e.g., `while(true) {}` or a loop condition that always evaluates to `true`).
+### Q36. What is an infinite loop and how does it happen in Java?
+**Answer:** A loop that never terminates because its condition is always `true` (e.g., `while (true) { }`).
 
-### Q37. What does the `break` statement do?
-**Answer:** It immediately exits the loop, jumping to the code directly after the loop block.
+### Q37. What does the `break;` statement do inside a loop?
+**Answer:** It immediately terminates the loop, jumping to the first line of code following the loop block.
 
 ### Q38. What is the increment operator (`++`)?
-**Answer:** An operator that adds `1` to the value of a number variable: `x++` is equivalent to `x = x + 1`.
+**Answer:** It increases the value of a numeric variable by 1: `x++;` is shorthand for `x = x + 1;`.
 
 ### Q39. What is the decrement operator (`--`)?
-**Answer:** An operator that subtracts `1` from the value of a number variable: `x--` is equivalent to `x = x - 1`.
+**Answer:** It decreases the value of a numeric variable by 1: `x--;` is shorthand for `x = x - 1;`.
 
-### Q40. How do you change a variable `y` by adding 5 to it using shorthand notation?
+### Q40. How do you add 5 to a variable `y` in Java using shorthand?
 **Answer:**
-```javascript
-y += 5; // equivalent to y = y + 5;
+```java
+y += 5;
 ```
 
 ---
 
 ## 🔀 Session 3: Control Structures
 
-### Q41. What is a boolean?
-**Answer:** A data type that can only have one of two values: `true` or `false`.
+### Q41. What values can a `boolean` variable hold in Java?
+**Answer:** Only `true` or `false`.
 
-### Q42. Name the comparison operators for equality and inequality.
+### Q42. What are the Java comparison operators for equality and inequality?
 **Answer:**
-- Equality: `===` (Strict equality)
-- Inequality: `!==` (Strict inequality)
+- Equality: `==`
+- Inequality: `!=`
 
-### Q43. What is the difference between `==` and `===`?
-**Answer:**
-- `==` compares values for equality after performing type conversion (coercion).
-- `===` compares both the value and the type strictly (no coercion).
+### Q43. How do you check if two Strings are identical in Java?
+**Answer:** You must use the `.equals()` method rather than `==`:
+```java
+String s1 = "hello";
+String s2 = "hello";
+if (s1.equals(s2)) { ... }
+```
 
 ### Q44. What does the `>` operator check?
-**Answer:** It checks if the value on the left is strictly greater than the value on the right.
+**Answer:** If the value on the left is strictly greater than the value on the right.
 
 ### Q45. What does the `<=` operator check?
-**Answer:** It checks if the value on the left is less than or equal to the value on the right.
+**Answer:** If the value on the left is less than or equal to the value on the right.
 
 ### Q46. What is the logical AND (`&&`) operator?
-**Answer:** It combines two conditions and returns `true` only if both conditions are `true`.
+**Answer:** It returns `true` only if both boolean conditions on its left and right are `true`.
 
 ### Q47. What is the logical OR (`||`) operator?
-**Answer:** It combines two conditions and returns `true` if at least one of the conditions is `true`.
+**Answer:** It returns `true` if at least one of the conditions is `true`.
 
 ### Q48. What is the logical NOT (`!`) operator?
-**Answer:** It negates a boolean value, changing `true` to `false` and `false` to `true`.
+**Answer:** It negates a boolean value: `!true` becomes `false`, and `!false` becomes `true`.
 
-### Q49. How does an `if` statement work?
-**Answer:** It runs a block of code if, and only if, its specified condition evaluates to `true`.
-
-### Q50. What is the purpose of an `else` statement?
-**Answer:** It provides an alternative block of code to run when the `if` condition evaluates to `false`.
-
-### Q51. When do you use `else if` instead of multiple `if` statements?
-**Answer:** When you have multiple mutually exclusive conditions (where only one block should run). In a chain of `if-else if-else`, once one condition is true, the rest are ignored.
-
-### Q52. How do you define a function with parameters in JavaScript?
-**Answer:** Place the parameter names inside the parentheses in the function declaration:
-```javascript
-function greetUser(name) {
-    console.log("Hello, " + name);
+### Q49. Write a basic `if` statement in Java.
+**Answer:**
+```java
+if (score > 90) {
+    System.out.println("A!");
 }
 ```
 
-### Q53. What is the difference between a parameter and an argument?
+### Q50. What does the `else` block do?
+**Answer:** It defines a block of code to run only when the preceding `if` condition evaluates to `false`.
+
+### Q51. When do you use `else if` instead of multiple independent `if` statements?
+**Answer:** When you want only one block of code to run out of multiple conditions (mutually exclusive choices).
+
+### Q52. How do you write a Java method that accepts parameters?
+**Answer:** You define the parameter types and names inside the method parentheses:
+```java
+public void printDouble(int number) {
+    System.out.println(number * 2);
+}
+```
+
+### Q53. What is the difference between a parameter and an argument in Java?
 **Answer:**
-- **Parameter:** The variable named in the function definition (e.g., `name`).
-- **Argument:** The actual value passed to the function when calling it (e.g., `"Arham"` in `greetUser("Arham");`).
+- **Parameter:** The variable declared in the method definition (e.g., `int number`).
+- **Argument:** The actual value passed when calling the method (e.g., `5` in `printDouble(5);`).
 
-### Q54. What does the `return` statement do in a function?
-**Answer:** It exits the function and sends a value back to the place where the function was called.
+### Q54. What is the purpose of the `return` keyword in a Java method?
+**Answer:** It terminates method execution and sends a value back to the caller. The method must declare a return type matching this value instead of `void`.
 
-### Q55. What happens to the execution of a function after a `return` statement is run?
-**Answer:** The function stops executing immediately. Any code written after the `return` statement in that block is ignored (unreachable code).
+### Q55. Can code be written in a method after a `return` statement?
+**Answer:** No. Code directly following a return statement in the same block is unreachable and will cause a compiler error.
 
-### Q56. What is global scope?
-**Answer:** Variables declared outside any function or block are in the global scope and can be accessed from anywhere in the program.
+### Q56. What is class scope (instance variables) in Java?
+**Answer:** Variables declared inside a class but outside any method. They are accessible by any method in that class.
 
-### Q57. What is local/function scope?
-**Answer:** Variables declared inside a function are local to that function and cannot be accessed from outside the function.
+### Q57. What is local/method scope in Java?
+**Answer:** Variables declared inside a method. They can only be accessed within that method.
 
-### Q58. What is block scope?
-**Answer:** Variables declared with `let` or `const` inside curly braces `{}` (like in loops or conditionals) are scoped to that block and cannot be accessed outside of it.
+### Q58. What is block scope in Java?
+**Answer:** Variables declared inside curly braces `{}` (like in an `if` block or `for` loop). They are only accessible inside those braces.
 
-### Q59. Can a function have multiple parameters? Show an example.
-**Answer:** Yes.
-```javascript
-function add(num1, num2) {
+### Q59. Write a method signature for a method `calculateSum` that returns an `int` and takes two `int` parameters.
+**Answer:**
+```java
+public int calculateSum(int num1, int num2) {
     return num1 + num2;
 }
 ```
 
-### Q60. Write a function `multiply` that takes two numbers and returns their product.
+### Q60. Write a method `isEven` that returns `true` if an integer parameter is even, and `false` otherwise.
 **Answer:**
-```javascript
-function multiply(a, b) {
-    return a * b;
+```java
+public boolean isEven(int n) {
+    return n % 2 == 0;
 }
 ```
 
@@ -276,105 +290,102 @@ function multiply(a, b) {
 
 ## 📊 Session 4: Arrays & Lists
 
-### Q61. What is an array?
-**Answer:** An ordered list of values grouped together inside bracket notation `[...]`.
+### Q61. What is an array in Java?
+**Answer:** A fixed-size container that holds a collection of values of the same data type.
 
-### Q62. How do you create an empty array in JavaScript?
+### Q62. How do you declare and instantiate a new integer array of size 5 in Java?
 **Answer:**
-```javascript
-let arr = [];
+```java
+int[] nums = new int[5];
 ```
 
-### Q63. How are elements in an array indexed?
-**Answer:** Arrays are zero-indexed. The first element is at index `0`, the second is at index `1`, and so on.
+### Q63. What index is the first element in a Java array?
+**Answer:** Index `0`.
 
-### Q64. How do you access the element at index 3 of an array `arr`?
+### Q64. How do you access the element at index 3 in a Java array `arr`?
 **Answer:**
-```javascript
-let element = arr[3];
+```java
+int value = arr[3];
 ```
 
-### Q65. How do you change the first element of an array to "Apple"?
+### Q65. How do you change the first element of a String array named `names` to "Alice"?
 **Answer:**
-```javascript
-arr[0] = "Apple";
+```java
+names[0] = "Alice";
 ```
 
-### Q66. How do you get the number of elements in an array?
-**Answer:** By using the `.length` property of the array:
-```javascript
-let size = arr.length;
+### Q66. How do you get the number of elements in a Java array?
+**Answer:** Using the `.length` property (Note: no parentheses for arrays):
+```java
+int size = arr.length;
 ```
 
-### Q67. What does the `push()` method do?
-**Answer:** It appends a new element to the end of the array.
-```javascript
-let list = [1, 2];
-list.push(3); // [1, 2, 3]
-```
+### Q67. What is an `ArrayList` in Java?
+**Answer:** A resizable list class in Java (`java.util.ArrayList`) that grows dynamically as elements are added.
 
-### Q68. What does the `pop()` method do?
-**Answer:** It removes and returns the last element of the array.
-```javascript
-let list = [1, 2, 3];
-let last = list.pop(); // last is 3; list is [1, 2]
-```
-
-### Q69. How does `indexOf()` work?
-**Answer:** It searches the array for a specific element and returns the first index at which it is found.
-
-### Q70. What does `indexOf()` return if the item is not found?
-**Answer:** It returns `-1`.
-
-### Q71. What does the `splice()` method do?
-**Answer:** It changes the contents of an array by removing, replacing, or adding elements at a specific index:
-`arr.splice(startIndex, deleteCount, item1, item2, ...)`
-
-### Q72. How do you remove the first element of an array?
-**Answer:** Using the `shift()` method:
-```javascript
-let list = [1, 2, 3];
-list.shift(); // removes 1, list is now [2, 3]
-```
-
-### Q73. How do you write a `for` loop to iterate through an array named `scores`?
+### Q68. How do you declare an `ArrayList` that holds Strings?
 **Answer:**
-```javascript
-for (let i = 0; i < scores.length; i++) {
-    console.log(scores[i]);
+```java
+ArrayList<String> list = new ArrayList<String>();
+```
+
+### Q69. How do you add an element to the end of a Java `ArrayList` named `list`?
+**Answer:** Using the `.add()` method:
+```java
+list.add("Karel");
+```
+
+### Q70. How do you remove an element at index 2 from a Java `ArrayList` named `list`?
+**Answer:** Using the `.remove()` method:
+```java
+list.remove(2);
+```
+
+### Q71. How do you find the size of a Java `ArrayList`?
+**Answer:** Using the `.size()` method:
+```java
+int total = list.size();
+```
+
+### Q72. How do you get an element at index 4 from an `ArrayList` named `list`?
+**Answer:** Using the `.get()` method (not bracket notation `[]`):
+```java
+String value = list.get(4);
+```
+
+### Q73. Write a Java `for` loop to iterate through an integer array `nums`.
+**Answer:**
+```java
+for (int i = 0; i < nums.length; i++) {
+    System.out.println(nums[i]);
 }
 ```
 
-### Q74. How do you access the last element of an array dynamically?
+### Q74. Write a Java `for-each` loop to print all strings in an `ArrayList<String> names`.
 **Answer:**
-```javascript
-let last = arr[arr.length - 1];
-```
-
-### Q75. Can an array store different data types at the same time in JavaScript?
-**Answer:** Yes. A JavaScript array can contain numbers, strings, booleans, objects, and other arrays all at once.
-
-### Q76. What is the index of the last element in an array of length `N`?
-**Answer:** The index is `N - 1`.
-
-### Q77. Write a loop to calculate the sum of all numbers in an array named `nums`.
-**Answer:**
-```javascript
-let sum = 0;
-for (let i = 0; i < nums.length; i++) {
-    sum += nums[i];
+```java
+for (String name : names) {
+    System.out.println(name);
 }
 ```
 
-### Q78. What happens if you try to access an index that doesn't exist in an array (e.g., `arr[100]` on a 3-element array)?
-**Answer:** It returns `undefined` instead of throwing an error.
+### Q75. How do you find the index of an element in an `ArrayList`?
+**Answer:** Using the `.indexOf(element)` method, which returns the index of the first occurrence or `-1` if not found.
 
-### Q79. How do you add an element to the beginning of an array?
-**Answer:** Using the `unshift()` method:
-```javascript
-let list = [2, 3];
-list.unshift(1); // list is now [1, 2, 3]
+### Q76. What is the index of the last element in an array `arr`?
+**Answer:** `arr.length - 1`.
+
+### Q77. What happens if you try to access an index out of bounds in Java (e.g. `arr[5]` on an array of size 5)?
+**Answer:** Java throws an `ArrayIndexOutOfBoundsException` at runtime and the program crashes.
+
+### Q78. How do you set/replace the element at index 1 of an `ArrayList`?
+**Answer:** Using the `.set(index, newValue)` method:
+```java
+list.set(1, "New Value");
 ```
 
-### Q80. What is the difference between an array and a primitive variable?
-**Answer:** A primitive variable stores a single value (e.g., `x = 5`), whereas an array is a collection/data structure that can store multiple ordered values (e.g., `list = [5, 10, 15]`).
+### Q79. Can a primitive type (like `int`) be stored directly in an `ArrayList`?
+**Answer:** No. `ArrayList` only stores objects. You must use Java wrapper classes like `Integer` (e.g., `ArrayList<Integer>`). Java will automatically convert `int` to `Integer` (autoboxing).
+
+### Q80. What is the difference between a Java array and an `ArrayList`?
+**Answer:** An **array** has a fixed size set at creation and can hold primitive types directly. An **`ArrayList`** has a dynamic size that changes automatically and can only hold objects (using wrappers for primitives).
